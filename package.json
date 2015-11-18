@@ -1,0 +1,9 @@
+{
+  "name"    : "github_trending_node",
+  "version" : "0.0.1",
+  "main"    : "main.js",
+  "dependencies": {
+        "request": "2.65.0",
+        "cheerio": "0.19.0",
+  }
+}
