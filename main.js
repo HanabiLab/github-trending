@@ -28,4 +28,51 @@ var Crawler = (function(){
             });
         });
     };
-})
+
+    Crawler.prototype.fetchTrendRepos = function (lang) {
+        return this.fetchTrendPage(lang).then(function (html){
+            var dom = cheerio.load(html);
+            var res1 = dom(".repo-list-item .repo-list-name a")
+                .toArray()
+                .map(function(a){
+                    var href = a.attribs['href'];
+                    var match = href.match(/^\/([^\/]+)\/([^\/]+)$/);
+                    return match;
+                });
+            var res2 = dom('.repo-list-item .repo-list-description')
+                .toArray()
+                .map(function(a){
+                    var desc = a.children[0].data;
+                    if (desc){
+                        desc = desc.replace(/\s+/g, ' ');
+                    }
+                    else{
+                        desc = "";
+                    }
+                    return desc;
+                });
+            var res3 = dom('.repo-list-item .repo-list-meta')
+                .toArray()
+                .map(function(a){
+                    var meta = a.children[0].data;
+                    meta = meta.replace(/\s+/g, ' ');
+                    meta = meta.split('•');
+                    return meta;
+                });
+            result = []
+            for (var idx = 0; idx < res1.length; idx++){
+                var item = [];
+                item.owner = res1[idx][1];
+                item.name = res1[idx][2];
+                item.desc = res2[idx];
+                item.lang = res3[idx][0];
+                item.stars = res3[idx][1];
+                result[idx] = item;
+            };
+            return result;
+        });
+    };
+    return Crawler;
+})();
+
+exports.Crawler = Crawler;
