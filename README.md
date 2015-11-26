@@ -4,7 +4,7 @@ Crawler for github trending page
 
 ##Usage
 
-    var test = require('./main');
+    var test = require('github_trending_node');
 
     scraper = new test.Crawler();
 
