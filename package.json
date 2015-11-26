@@ -1,9 +1,32 @@
 {
   "name"    : "github_trending_node",
+  "description": "nodejs modules used for fetching github trending data",
   "version" : "0.0.1",
+  "author"  : "Roy Xue <xljroy@gmail.com>",
+  "homepage": "https://github.com/royxue/github_trending_node",
+  "bugs"    : "https://github.com/royxue/github_trending_node/issues",
   "main"    : "main.js",
+  "contributors": [
+    {
+      "name": "Roy Xue",
+      "email": "xljroy@gmail.com",
+      "url": "royxue.me"
+    }
+  ],
+  "keywords": [
+    "nodejs",
+    "crawler",
+    "github",
+    "trending"
+  ],
   "dependencies": {
         "request": "2.65.0",
         "cheerio": "0.19.0",
-  }
+  },
+  "repository": {
+    "type"  : "git",
+    "url"   : "git://github.com/royxue/github_trending_node.git"
+  },
+  "preferGlobal": false,
+  "license" : "MIT"
 }
