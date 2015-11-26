@@ -1,2 +1,27 @@
-# github_trending_node
+# github_trending\_node
+---
 Crawler for github trending page
+
+##Usage
+
+    var test = require('./main');
+
+    scraper = new test.Crawler();
+
+    scraper.fetchTrendRepos("").then(function(repos){
+        repos.forEach(function(repo){
+            console.log(repo.owner);
+            console.log(repo.name);
+            console.log(repo.desc);
+        });
+    }).catch(function(err){
+        console.log(err.message);
+    });
+    
+Crawler will fetch 5 kinds data of each repo:
+
+	owner: Repo owner name
+	name:	Repo name
+	desc:	Repo desciption
+	lang:	Repo main language
+	stars: Repo stars today
