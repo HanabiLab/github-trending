@@ -2,6 +2,10 @@
 ---
 Crawler for github trending page
 
+## Install
+
+    npm install github_trending_node
+
 ##Usage
 
     var test = require('github_trending_node');
