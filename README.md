@@ -29,3 +29,7 @@ Crawler will fetch 5 kinds data of each repo:
 	desc:	Repo desciption
 	lang:	Repo main language
 	stars: Repo stars today
+
+##TODO:
+
+Find better way to fetch data, now there are still some problems.
