@@ -29,48 +29,23 @@ var Crawler = (function(){
         });
     };
 
-    Crawler.prototype.fetchTrendRepos = function (lang) {
+    Crawler.prototype.fetchTrendRepos = function (lang, callback) {
         return this.fetchTrendPage(lang).then(function (html){
-            var dom = cheerio.load(html);
-            // TODO: Refactor all the code below for better crawler result 
-            var res1 = dom(".repo-list-item .repo-list-name a")
-                .toArray()
-                .map(function(a){
-                    var href = a.attribs['href'];
-                    var match = href.match(/^\/([^\/]+)\/([^\/]+)$/);
-                    return match;
-                });
-            var res2 = dom('.repo-list-item .repo-list-description')
-                .toArray()
-                .map(function(a){
-                    var desc = a.children[0].data;
-                    if (desc){
-                        desc = desc.replace(/\s+/g, ' ');
-                    }
-                    else{
-                        desc = "";
-                    }
-                    return desc;
-                });
-            var res3 = dom('.repo-list-item .repo-list-meta')
-                .toArray()
-                .map(function(a){
-                    var meta = a.children[0].data;
-                    meta = meta.replace(/\s+/g, ' ');
-                    meta = meta.split('•');
-                    return meta;
-                });
-            result = []
-            for (var idx = 0; idx < res1.length; idx++){
-                var item = [];
-                item.owner = res1[idx][1];
-                item.name = res1[idx][2];
-                item.desc = res2[idx];
-                item.lang = res3[idx][0];
-                item.stars = res3[idx][1];
-                result[idx] = item;
-            };
-            return result;
+            var $ = cheerio.load(html);
+            // TODO: Refactor all the code below for better crawler result
+            var result = [];
+            $(".repo-list-item").each(function(i, elem){
+                var res = []
+                var after_link = $(this).children(".repo-list-name").children("a").attr("href");
+                res.link = "https://github.com" + after_link;
+                res.name = $(this).children(".repo-list-name").text().replace(/\s+/g, "");
+                res.desc = $(this).children(".repo-list-description").text().replace(/\s+/g, " ");
+                var meta = $(this).children(".repo-list-meta").text().replace(/\s+/g, '').split("•");
+                res.lang = meta[0];
+                res.stars = meta[1].replace("starstoday", "");
+                result.push(res)
+            });
+            callback(result);
         });
     };
 
