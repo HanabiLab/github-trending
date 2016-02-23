@@ -1,10 +1,10 @@
-# github_trending\_node
+# github-trending
 ---
 Crawler for github trending page
 
 ## Install
 
-    npm install github_trending_node
+    npm install github-trending
 
 ##Usage
 
@@ -12,7 +12,7 @@ Crawler for github trending page
 
     scraper = new test.Crawler();
 
-    scraper.fetchTrendRepos("").then(function(repos){
+    scraper.fetchTrendRepos("", function(repos){
         repos.forEach(function(repo){
             console.log(repo.owner);
             console.log(repo.name);
@@ -24,12 +24,8 @@ Crawler for github trending page
     
 Crawler will fetch 5 kinds data of each repo:
 
-	owner: Repo owner name
+	link:   Repo link
 	name:	Repo name
 	desc:	Repo desciption
 	lang:	Repo main language
-	stars: Repo stars today
-
-##TODO:
-
-Find better way to fetch data, now there are still some problems.
+	stars:  Repo stars today
