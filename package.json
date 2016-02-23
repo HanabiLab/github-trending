@@ -1,5 +1,5 @@
 {
-  "name"    : "github-trending",
+  "name"    : "github-trend-crawler",
   "description": "nodejs modules for fetching github trending data",
   "version" : "0.0.1",
   "author"  : "Roy Xue <xljroy@gmail.com>",

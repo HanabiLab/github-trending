@@ -1,16 +1,16 @@
-# github-trending
+# github-trend-crawler
 ---
 Crawler for github trending page
 
 ## Install
 
-    npm install github-trending
+    npm install github-trend-crawler
 
 ##Usage
 
-    var test = require('github_trending_node');
+    var trend = require('github-trend-crawler');
 
-    scraper = new test.Crawler();
+    scraper = new trend.Crawler();
 
     scraper.fetchTrendRepos("", function(repos){
         repos.forEach(function(repo){
