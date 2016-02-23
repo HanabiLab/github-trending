@@ -32,6 +32,7 @@ var Crawler = (function(){
     Crawler.prototype.fetchTrendRepos = function (lang) {
         return this.fetchTrendPage(lang).then(function (html){
             var dom = cheerio.load(html);
+            // TODO: Refactor all the code below for better crawler result 
             var res1 = dom(".repo-list-item .repo-list-name a")
                 .toArray()
                 .map(function(a){
@@ -72,7 +73,9 @@ var Crawler = (function(){
             return result;
         });
     };
+
     return Crawler;
+
 })();
 
 exports.Crawler = Crawler;
